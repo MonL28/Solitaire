@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,18 +8,20 @@ public class SpriteUpdate : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Selectable selectable;
     SolitareScript solitare;
+    UserInput userInput;
 
 
     private void Start()
     {
         List<string> deck = SolitareScript.GenerateDeck();
         solitare = FindObjectOfType<SolitareScript>();
+        userInput = FindObjectOfType<UserInput>();
 
         int i = 0;
 
-        foreach(string card in deck)
+        foreach (string card in deck)
         {
-            if(this.name == card)
+            if (this.name == card)
             {
                 cardFace = solitare.cardFaces[i];
                 break;
@@ -32,13 +33,25 @@ public class SpriteUpdate : MonoBehaviour
     }
     private void Update()
     {
-        if(selectable.faceUp == true)
+        if (selectable.faceUp == true)
         {
             spriteRenderer.sprite = cardFace;
         }
         else
         {
             spriteRenderer.sprite = cardBack;
+        }
+
+        if (userInput.slot1)
+        {
+            if (name == userInput.slot1.name)
+            {
+                spriteRenderer.color = Color.yellow;
+            }
+            else
+            {
+                spriteRenderer.color = Color.white;
+            }
         }
     }
 
