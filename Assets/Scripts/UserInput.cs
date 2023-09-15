@@ -96,7 +96,6 @@ public class UserInput : MonoBehaviour
                 }
                 else
                 {
-
                     slot1 = selected;
                 }
             }
@@ -124,6 +123,7 @@ public class UserInput : MonoBehaviour
             if (DoubleClick())
             {
                 // attempt auto stack
+                AutoStack(selected); // provjera!!!
             }
         }
 
